@@ -87,4 +87,8 @@ class MovieViewModel : ViewModel() {
         }
         return null
     }
+
+    fun getMovieById(id: String): MovieModel? {
+        return _movies.value?.first { it.id == id }
+    }
 }
