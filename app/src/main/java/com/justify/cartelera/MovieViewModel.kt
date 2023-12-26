@@ -25,7 +25,7 @@ class MovieViewModel : ViewModel() {
                 val call = serviceGenerator.getMovies(key = keyValue)
                 Log.d("request", call.toString())
 
-                var sortMovies = call.items.sortedWith(compareByDescending<MovieModel> { getYear(it.releaseState) }
+                val sortMovies = call.items.sortedWith(compareByDescending<MovieModel> { getYear(it.releaseState) }
                     .thenByDescending { getMonth(it.releaseState) }
                     .thenByDescending { getDay(it.releaseState) })
                 Log.d("sortMovies", sortMovies.toString())

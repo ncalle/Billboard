@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Cartelera</string>
+    <string name="no_movie_error">No se encontró la película seleccionada</string>
+    <string name="date">Fecha de estreno: %1$s</string>
+    <string name="review">Reseña: %1$s</string>
+    <string name="actors">Actores: %1$s</string>
+    <string name="permission">Permisos</string>
+    <string name="bilboard">Cartelera</string>
+    <string name="location_granted">Permiso de ubicación concedido previamente</string>
+    <string name="camera_granted">Permiso de cámara concedido previamente</string>
 </resources>

@@ -12,13 +12,14 @@ import com.justify.cartelera.ui.screens.MovieScreen
 fun NavGraph (){
 
     val navigationController = rememberNavController()
+    val viewModel = MovieViewModel()
     NavHost(navController = navigationController, startDestination = "/") {
         composable("/") {
-            MovieScreen(MovieViewModel(), navigationController)
+            MovieScreen(viewModel, navigationController)
         }
         composable("movie/{movieId}") {
             val movieId = it.arguments?.getString("movieId")
-            MovieDetailScreen(movieId = movieId ?: "", navigationController)
+            MovieDetailScreen(movieId = movieId ?: "", viewModel)
         }
     }
 }

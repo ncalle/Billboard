@@ -7,41 +7,34 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import com.justify.cartelera.MovieModel
+import com.justify.cartelera.MovieViewModel
+import com.justify.cartelera.R
 
 @Composable
-fun MovieDetailScreen(movieId: String, navController: NavController) { // movie: MovieModel) {
-    val movie = MovieModel(
-        id = "1",
-        title = "Movie 1",
-        image = "https://picsum.photos/200/300",
-        releaseState = "2021-01-01",
-        plot = "Plot 1",
-        stars = "Stars 1",
-        directors = "Director 1",
-        genres = "Genre 1",
-        fullTitle = "Full Plot 1",
-        year = "2021",
-        runtimeMins = "120",
-        runtimeStr = "120",
-        contentRating = "PG-13",
-        imDbRating = "8.0",
-        imDbRatingCount = "100",
-        metacriticRating = "80",
-        genreList = emptyList(),
-        directorList = emptyList(),
-        starList = emptyList()
-    )
+fun MovieDetailScreen(movieId: String, viewModel: MovieViewModel) {
+
+    val movie = viewModel.getMovieById(movieId)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        if(movie == null) {
+            Text(
+                text = stringResource(R.string.no_movie_error),
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+            return
+        }
+
         Text(
             text = movie.title,
             fontWeight = FontWeight.Bold,
@@ -49,19 +42,19 @@ fun MovieDetailScreen(movieId: String, navController: NavController) { // movie:
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Text(
-            text = "Fecha de estreno: ${movie.releaseState}",
+            text = stringResource(R.string.date, movie.releaseState),
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Text(
-            text = "Reseña: ${movie.plot}",
+            text = stringResource(R.string.review, movie.plot),
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
             modifier = Modifier.padding(bottom = 8.dp)
         )
         Text(
-            text = "Actores: ${movie.stars}",
+            text = stringResource(R.string.actors, movie.stars),
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
             modifier = Modifier.padding(bottom = 8.dp)
