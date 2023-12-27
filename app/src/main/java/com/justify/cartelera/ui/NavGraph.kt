@@ -9,6 +9,9 @@ import com.justify.cartelera.database.MovieRepository
 import com.justify.cartelera.ui.screens.MovieDetailScreen
 import com.justify.cartelera.ui.screens.MovieScreen
 
+/**
+ * NavGraph will be in charge of defining the navigation graph.
+ * */
 @Composable
 fun NavGraph (viewModel: MovieViewModel){
 

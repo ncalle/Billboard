@@ -1,5 +1,6 @@
 package com.justify.cartelera.api
 
+/*** This class will be in charge of receiving the response from the API ***/
 data class MovieResponse(
     val items: List<MovieModel>,
     val errorMessage: String?,

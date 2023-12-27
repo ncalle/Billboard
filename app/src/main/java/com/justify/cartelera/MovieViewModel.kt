@@ -17,6 +17,9 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
+/**
+ * MovieViewModel will be in charge of defining the logic of the application.
+ * */
 class MovieViewModel(private val repository: MovieRepository, context: Context) : ViewModel() {
 
     private val _movies = MutableLiveData<List<MovieModel>>()
@@ -36,8 +39,6 @@ class MovieViewModel(private val repository: MovieRepository, context: Context) 
                     val sortMovies = call.items.sortedWith(compareByDescending<MovieModel> { getYear(it.releaseState) }
                         .thenByDescending { getMonth(it.releaseState) }
                         .thenByDescending { getDay(it.releaseState) })
-                    Log.d("MovieViewModel sort", sortMovies.toString())
-                    Log.d("MovieViewModel sort", sortMovies.size.toString())
                     _movies.value = sortMovies
 
                     val movies = sortMovies.map { movie ->
@@ -60,7 +61,6 @@ class MovieViewModel(private val repository: MovieRepository, context: Context) 
                             stars = movie.stars
                         )
                     }
-                    Log.e("MovieViewModel", repository.toString())
                     repository.insertMovies(movies)
 
                 } else {
@@ -100,17 +100,15 @@ class MovieViewModel(private val repository: MovieRepository, context: Context) 
     private fun isConnected(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    return true
-                }
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        if (capabilities != null) {
+            if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                return true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                return true
+            } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                return true
             }
         }
         return false

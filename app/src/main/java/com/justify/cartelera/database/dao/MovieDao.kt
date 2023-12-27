@@ -6,6 +6,9 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.justify.cartelera.database.entities.MovieEntity
 
+/**
+ * MovieDao will be in charge of defining the queries to the database.
+ * */
 @Dao
 interface MovieDao {
     @Query("SELECT * FROM movie")

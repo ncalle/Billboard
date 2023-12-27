@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * MovieEntity will be in charge of defining the table of the database.
+ * */
 @Entity(tableName = "movie")
 data class MovieEntity (
     @PrimaryKey(autoGenerate = true)

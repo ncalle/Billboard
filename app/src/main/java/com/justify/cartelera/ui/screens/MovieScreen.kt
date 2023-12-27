@@ -42,6 +42,9 @@ import com.justify.cartelera.R
 const val CAMERA_PERMISSION_REQUEST_CODE = 0
 const val LOCATION_PERMISSION_REQUEST_CODE = 1
 
+/**
+ * MovieScreen will be in charge of displaying the list of movies.
+ * */
 @Composable
 fun MovieScreen(viewModel: MovieViewModel, navController: NavController) {
     val movies by viewModel.movies.observeAsState(emptyList())

@@ -15,6 +15,9 @@ import coil.compose.AsyncImage
 import com.justify.cartelera.MovieViewModel
 import com.justify.cartelera.R
 
+/**
+ * MovieDetailScreen will be in charge of displaying the details of a movie.
+ * */
 @Composable
 fun MovieDetailScreen(movieId: String, viewModel: MovieViewModel) {
 

@@ -3,6 +3,9 @@ package com.justify.cartelera.database
 import com.justify.cartelera.database.dao.MovieDao
 import com.justify.cartelera.database.entities.MovieEntity
 
+/**
+ * MovieRepository will be in charge of defining the queries to the database.
+ * */
 class MovieRepository(private val movieDao: MovieDao) {
 
     suspend fun insertMovies(movies: List<MovieEntity>) {
