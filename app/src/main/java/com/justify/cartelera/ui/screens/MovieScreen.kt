@@ -71,6 +71,7 @@ fun MovieScreen(viewModel: MovieViewModel, navController: NavController) {
         scaffoldState = scaffoldState,
 
     ) {
+
         LazyColumn {
             items(movies) { movie ->
                 MovieItem(movie, onClick = {

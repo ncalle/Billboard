@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -88,6 +89,12 @@ class MovieViewModel(private val repository: MovieRepository, context: Context) 
                             directorList = emptyList(),
                             starList = emptyList()
                         )
+                    }
+
+                    if(savedList.isEmpty()){
+                        Toast.makeText(context, "Sin conexion, no hay datos guardados", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Sin conexion, cargando datos guardados ", Toast.LENGTH_SHORT).show()
                     }
                 }
 
