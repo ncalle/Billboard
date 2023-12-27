@@ -3,7 +3,6 @@ package com.justify.cartelera.ui.screens
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -36,7 +35,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.justify.cartelera.MainActivity
-import com.justify.cartelera.MovieModel
+import com.justify.cartelera.api.MovieModel
 import com.justify.cartelera.MovieViewModel
 import com.justify.cartelera.R
 
@@ -73,8 +72,6 @@ fun MovieScreen(viewModel: MovieViewModel, navController: NavController) {
             items(movies) { movie ->
                 MovieItem(movie, onClick = {
                     try {
-                        Log.e("movie", movie.toString())
-                        Log.e("Id", movie.id)
                         navController.navigate("movie/${movie.id}")
                     } catch (e: Exception) {
                         e.printStackTrace()

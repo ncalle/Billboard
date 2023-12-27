@@ -1,7 +1,9 @@
-package com.justify.cartelera
+package com.justify.cartelera.api
 
 data class MovieResponse(
-    val items: List<MovieModel>
+    val items: List<MovieModel>,
+    val errorMessage: String?,
+    var isSuccessful: Boolean = true
 )
 
 data class MovieModel(

@@ -6,9 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import com.justify.cartelera.database.MovieRepository
+import com.justify.cartelera.database.entities.MovieDatabase
 import com.justify.cartelera.ui.NavGraph
 import com.justify.cartelera.ui.theme.CarteleraTheme
-import com.justify.cartelera.ui.screens.MovieScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +23,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    NavGraph() // MovieScreen(MovieViewModel())
+
+                    val context = LocalContext.current
+                    val movieDao = MovieDatabase.getInstance(context).movieDao()
+                    val repository = MovieRepository(movieDao)
+                    val viewModel = MovieViewModel(repository, context)
+                    NavGraph(viewModel)
                 }
             }
         }
